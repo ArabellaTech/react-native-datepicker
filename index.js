@@ -88,7 +88,7 @@ class DatePicker extends Component {
   }
 
   getDate(date = this.props.date) {
-    const {mode, minDate, maxDate, format = FORMATS[mode]} = this.props;
+    const { mode, minDate, maxDate, format = FORMATS[mode] } = this.props;
 
     // date默认值
     if (!date) {
@@ -123,9 +123,9 @@ class DatePicker extends Component {
     const {mode, format = FORMATS[mode]} = this.props;
 
     if (date instanceof Date) {
-      return Moment(date).format(format);
+      return Moment(date).format();
     } else {
-      return Moment(this.getDate(date)).format(format);
+      return Moment(this.getDate(date)).format();
     }
   }
 
