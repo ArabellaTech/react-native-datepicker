@@ -297,7 +297,7 @@ class DatePicker extends Component {
                     style={[Style.datePickerCon, {height: this.state.animatedHeight}, customStyles.datePickerCon]}
                   >
                     <DatePickerIOS
-                      date={this.state.date}
+                      date={Moment(this.state.date).toDate()}
                       mode={mode}
                       minimumDate={minDate && this.getDate(minDate)}
                       maximumDate={maxDate && this.getDate(maxDate)}
