@@ -129,6 +129,16 @@ class DatePicker extends Component {
     }
   }
 
+  getDateStrFormatted(date = this.props.date) {
+    const {mode, format = FORMATS[mode]} = this.props;
+
+    if (date instanceof Date) {
+      return Moment(date).format(format);
+    } else {
+      return Moment(this.getDate(date)).format(format);
+    }
+  }
+
   datePicked() {
     if (typeof this.props.onDateChange === 'function') {
       this.props.onDateChange(this.getDateStr(this.state.date), this.state.date);
@@ -142,7 +152,7 @@ class DatePicker extends Component {
     if (!date && placeholder) {
       return (<Text style={[Style.placeholderText, customStyles.placeholderText]}>{placeholder}</Text>);
     }
-    return (<Text style={[Style.dateText, customStyles.dateText]}>{this.getDateStr()}</Text>);
+    return (<Text style={[Style.dateText, customStyles.dateText]}>{this.getDateStrFormatted()}</Text>);
   }
 
   onDatePicked({action, year, month, day}) {
