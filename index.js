@@ -123,9 +123,9 @@ class DatePicker extends Component {
     const {mode, format = FORMATS[mode]} = this.props;
 
     if (date instanceof Date) {
-      return Moment(date).format();
+      return Moment(date).format(format);
     } else {
-      return Moment(this.getDate(date)).format();
+      return Moment(this.getDate(date)).format(format);
     }
   }
 
