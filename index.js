@@ -123,19 +123,13 @@ class DatePicker extends Component {
     const {mode, format = FORMATS[mode]} = this.props;
 
     if (date instanceof Date) {
+      console.log('is instanceof date date', date)
+      console.log('is instanceof date Moment(date).format()', Moment(date).format())
       return Moment(date).format();
     } else {
+      console.log('is not instanceof date date', date)
+      console.log('is not instanceof date Moment(date).format()', Moment(this.getDate(date)).format())
       return Moment(this.getDate(date)).format();
-    }
-  }
-
-  getDateStrFormatted(date = this.props.date) {
-    const {mode, format = FORMATS[mode]} = this.props;
-
-    if (date instanceof Date) {
-      return Moment(date).format(format);
-    } else {
-      return Moment(this.getDate(date)).format(format);
     }
   }
 
@@ -152,7 +146,7 @@ class DatePicker extends Component {
     if (!date && placeholder) {
       return (<Text style={[Style.placeholderText, customStyles.placeholderText]}>{placeholder}</Text>);
     }
-    return (<Text style={[Style.dateText, customStyles.dateText]}>{this.getDateStrFormatted()}</Text>);
+    return (<Text style={[Style.dateText, customStyles.dateText]}>{this.getDateStr()}</Text>);
   }
 
   onDatePicked({action, year, month, day}) {
