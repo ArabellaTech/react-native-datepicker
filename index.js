@@ -129,6 +129,16 @@ class DatePicker extends Component {
     }
   }
 
+  getDateStrFormatted(date = this.props.date) {
+    const {mode, format = FORMATS[mode]} = this.props;
+
+    if (Moment(date).isValid()) {
+      return Moment(date).format(format);
+    } else {
+      return Moment(this.getDate(date)).format(format);
+    }
+  }
+
   datePicked() {
     if (typeof this.props.onDateChange === 'function') {
       this.props.onDateChange(this.getDateStr(this.state.date), this.state.date);
@@ -137,12 +147,10 @@ class DatePicker extends Component {
 
   getTitleElement() {
     const {date, placeholder, customStyles} = this.props;
-    console.log('getTitleElement', date)
-    console.log('getTitleElement - this.getDateStr', this.getDateStr())
     if (!date && placeholder) {
       return (<Text style={[Style.placeholderText, customStyles.placeholderText]}>{placeholder}</Text>);
     }
-    return (<Text style={[Style.dateText, customStyles.dateText]}>{this.getDateStr()}</Text>);
+    return (<Text style={[Style.dateText, customStyles.dateText]}>{this.getDateStrFormatted()}</Text>);
   }
 
   onDatePicked({action, year, month, day}) {
