@@ -122,7 +122,8 @@ class DatePicker extends Component {
   getDateStr(date = this.props.date) {
     const {mode, format = FORMATS[mode]} = this.props;
 
-    console.log('moment(date).isValid()', moment(date).isValid())
+    console.log('moment(date).isValid() date', date)
+    console.log('moment(date).isValid()', Moment(date).isValid())
     if (date instanceof Date) {
       console.log('is instanceof date date', date)
       console.log('is instanceof date Moment(date).format()', Moment(date).format())
